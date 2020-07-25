@@ -1,0 +1,27 @@
+/*Find the missing letter in the passed letter range and return it.
+
+If all letters are present in the range, return undefined. */
+
+function fearNotLetter(str) {
+  let letters=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+  let input=str.split("");
+  let start=letters.indexOf(input[0]);
+  let end=letters.indexOf(input[input.length-1]);
+  let missing=[];
+  if(input!==letters){
+    for(var i=start;i<end;i++){
+      let regex=new RegExp(letters[i],"ig");
+      let test=regex.test(input);
+      if (test==false){
+      missing=letters.slice(i,i+1);
+      return missing.join("");
+      }
+    }
+  }
+     
+  return undefined;
+      
+    
+}
+
+console.log(fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
