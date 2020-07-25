@@ -1,0 +1,23 @@
+/*Truncate a string (first argument) if it is longer than the given maximum string length (second argument). 
+
+Return the truncated string with a ... ending.
+*/
+
+function truncateString(str, num) {
+  var len=str.length;
+  var arr=[];
+  if(len>num){
+    for(var i=0;i<num;i++){
+      arr.push(str[i]);
+      var k=arr.join();
+      var l=k.replace(/,/g,"");
+    }
+    
+    return l+"...";
+    
+  }else{
+    return str;
+  }
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
