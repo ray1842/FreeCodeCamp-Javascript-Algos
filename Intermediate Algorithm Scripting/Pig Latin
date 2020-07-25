@@ -1,0 +1,37 @@
+/*Pig Latin is a way of altering English Words. The rules are as follows:
+
+- If a word begins with a consonant, take the first consonant or consonant cluster, move it to the end of the word, and add "ay" to it.
+
+- If a word begins with a vowel, just add "way" at the end.
+
+Translate the provided string to Pig Latin. Input strings are guaranteed to be English words in all lowercase.
+*/
+
+function translatePigLatin(str) {
+  let vowel=new RegExp(/^[aeiou]/i).test(str)
+  let consonant=new RegExp(/[^aeiou]/i);
+  let arr0=[...str]
+  if(vowel==true){
+    arr0.push("w","a","y");
+  }else{
+  var i = 0;
+    while (i<arr0.length) {
+    if (consonant.test(arr0[i])==true){
+      arr0.splice(i,1); 
+    }else{
+      break;
+    }
+}
+  var diff=str.length-arr0.length;
+  for(i;i<diff;i++){
+    arr0.push(str[i]);
+  }
+  if(vowel==false){
+    arr0.push("a","y");
+  
+  }}
+  return arr0.join("");
+}
+
+
+console.log(translatePigLatin("california"));
