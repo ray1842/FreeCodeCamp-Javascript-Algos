@@ -1,0 +1,37 @@
+/*Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+The range will be an array of two numbers that will not necessarily be in numerical order.
+
+For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+*/
+function smallestCommons(arr) {
+  //Sort the inputs
+  var start;
+  var end;
+  if(arr[1]<arr[0]){
+    start=arr[1];
+    end=arr[0];
+  }else{
+    start=arr[0];
+    end=arr[1];
+  }
+  var list=[];
+  //missing numbers
+  for(var n=start;n<=end;n++){
+    list.push(n);
+  }
+  //Greatest Common Divisor
+  function gcd(a,b){
+    if(b===0) return a;
+    else return gcd(b,a%b);
+  }
+  //Least Common Multiple of all numbers in the ranges
+  var lcm=list[0];
+  for(var l=1; l<list.length;l++){
+    var GCD =gcd(lcm,list[l]);
+    lcm=(lcm*list[l])/GCD;
+  }
+  return lcm;
+}
+
+console.log(smallestCommons([2,10]));
