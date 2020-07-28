@@ -12,7 +12,7 @@ Your solution should not use the Array.prototype.flat() or Array.prototype.flatM
 function steamrollArray(arr) {
   var nonArray=[];
   var realArray=[];
-  var finalArr=[];
+  var holdingArray=[];
   for(var i=0;i<arr.length;i++){
     if(Array.isArray(arr[i])==false){
       nonArray.push(arr[i]);
@@ -25,20 +25,20 @@ function steamrollArray(arr) {
     let regex=new RegExp(/\w/,"ig");
     let test=regex.test(realArray[j]);
       if(test==true){
-        finalArr.push(realArray[j])
+        holdingArray.push(realArray[j])
       }
     }
     var realArray=[];
-    for(var k=0;k<finalArr.length;k++){
+    for(var k=0;k<holdingArray.length;k++){
       let digitRegex=new RegExp(/\d/,"ig");
-      let digitTest=digitRegex.test(finalArr);
+      let digitTest=digitRegex.test(holdingArray);
       if(digitTest==true){
-        realArray.push(parseInt(finalArr[k]));
+        realArray.push(parseInt(holdingArray[k]));
       }else{
-        return finalArr;
+        return holdingArray;
       }
     }
-  return finalArr=nonArray.concat(realArray);
- 
+  let finalArr=nonArray.concat(realArray);
+  return finalArr;
 }
 console.log(steamrollArray([[["a"]], [["b"]]]));
