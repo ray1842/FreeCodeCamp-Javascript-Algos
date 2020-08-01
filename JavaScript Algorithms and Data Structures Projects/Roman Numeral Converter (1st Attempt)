@@ -1,0 +1,29 @@
+/*Convert the given number into a roman numeral.
+
+All roman numerals answers should be provided in upper-case.
+*/
+function convertToRoman(num) {
+  var oneRoman=["","I","II","III","IV","V","VI","VII","VIII","IX"];
+  var tensRomans=["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"]
+  var hundredsRoman=["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
+  var thousandsRoman=["","M","MM","MMM","MMMM"]
+  var decimal=JSON.stringify(num).split("");
+  var numeral=[];
+  for(var i=0;i<decimal.length;i++){
+    if(decimal.length==1){
+      numeral.push(oneRoman[decimal[i]]);
+    }else if(decimal.length==2){
+      numeral.push(tensRomans[decimal[i]]+oneRoman[decimal[i+1]])
+      break;
+    }else if(decimal.length==3){
+      numeral.push(hundredsRoman[decimal[i]]+tensRomans[decimal[i+1]]+oneRoman[decimal[i+2]])
+      break;
+    }else if(decimal.length==4){
+      numeral.push(thousandsRoman[decimal[i]]+hundredsRoman[decimal[i+1]]+tensRomans[decimal[i+2]]+oneRoman[decimal[i+3]])
+      break;
+    }
+  }
+ return numeral.join("");
+}
+
+console.log(convertToRoman(501));
