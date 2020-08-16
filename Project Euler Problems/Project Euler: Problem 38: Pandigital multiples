@@ -18,23 +18,17 @@ function pandigitalMultiples() {
       multiples.push(i*j);
     }
   }
-  //turn each element in the multiples array into a string, so you can concatenate them later
+  //turn each element in the multiples array into a string and concatenate them 
   var strMults=[];
-  for(var s=0;s<multiples.length;s++){
-    strMults.push(JSON.stringify(multiples[s]));
-  }
- 
- //join the strings into 9 digit pandigitals
- let joinMults=[];
- for(var m=0;m<strMults.length;m+=2){
-     joinMults.push(strMults[m].concat(strMults[m+1]))
- }
- //test whether the largest pandigitals have the digits 1-9 occuring only once
+  for(var s=0;s<multiples.length;s+=2){
+    strMults.push(JSON.stringify(multiples[s]).concat(JSON.stringify(multiples[s+1])));
+    }
+//test whether the largest pandigitals have the digits 1-9 occuring only once
  let pandigitals;
- for(var r=joinMults.length;r>0;r--){
-   if(/(?=.*1)(?=.*2)(?=.*3)(?=.*4)(?=.*5)(?=.*6)(?=.*7)(?=.*8)(?=.*9)/.test(joinMults[r])==true){
+ for(var p=strMults.length;p>0;p--){
+   if(/(?=.*1)(?=.*2)(?=.*3)(?=.*4)(?=.*5)(?=.*6)(?=.*7)(?=.*8)(?=.*9)/.test(strMults[p])==true){
      //turn the largest pandigital into a number
-     pandigitals=parseInt(joinMults[r],10);
+     pandigitals=parseInt(strMults[p],10);
      break;
    }
  }
