@@ -1,0 +1,38 @@
+/*The sum of the squares of the first ten natural numbers is,
+
+12 + 22 + ... + 102 = 385
+The square of the sum of the first ten natural numbers is,
+
+(1 + 2 + ... + 10)2 = 552 = 3025
+Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
+
+Find the difference between the sum of the squares of the first n natural numbers and the square of the sum.
+*/
+function sumSquareDifference(n) {
+  //list of numbers from 1 to n
+  let arr1=[];
+  for(var i=1;i<=n;i++){
+    arr1.push(i)
+  }
+  //sum of squares
+  function sumOfSquares(){
+    var sum=0;
+    for(var j=0;j<arr1.length;j++){
+      sum=sum+Math.pow(arr1[j],2);
+    }
+    return sum
+  }
+  //square of sum
+  function squareOfSum(){
+    var sum=0;
+    for(var k=0;k<arr1.length;k++){
+      sum=sum+arr1[k];
+    }
+    return Math.pow(sum,2);
+  }
+
+  //sum square difference
+  return squareOfSum()-sumOfSquares();
+}
+
+console.log(sumSquareDifference(10));
