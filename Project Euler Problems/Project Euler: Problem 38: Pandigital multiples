@@ -1,0 +1,54 @@
+/*Take the number 192 and multiply it by each of 1, 2, and 3:
+
+192 × 1 = 192
+192 × 2 = 384
+192 × 3 = 576
+By concatenating each product we get the 1 to 9 pandigital, 192384576. We will call 192384576 the concatenated product of 192 and (1, 2, 3).
+
+The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, and 5, giving the pandigital, 918273645, which is the concatenated product of 9 and (1, 2, 3, 4, 5).
+
+What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1, 2, ... , n) where n > 1?
+*/
+function pandigitalMultiples() {
+  let multiples=[];
+  //list numbers from 1 to 10000; 10000 is the upper limit because if you apply the pangitial method to numbers greater than 10000 the number will be longer than 9 digits in length;
+  for(var i=1;i<10000;i++){
+    //multiply each number by 1-10;
+    for(var j=1;j<10;j++){
+      multiples.push(i*j);
+    }
+  }
+  //turn each element in the multiples array into a string, so you can split each element into single digits
+  var strMults=[];
+  for(var s=0;s<multiples.length;s++){
+    strMults.push(JSON.stringify(multiples[s]));
+  }
+  //split each strMultsingified element into its constituent digits
+  let splitMults=[]
+  let concatenation="";
+ for(var k=0;k<strMults.length;k+=9){
+     concatenation=strMults[k]+strMults[k+1]+strMults[k+2]+strMults[k+3]+strMults[k+4]+strMults[k+5]+strMults[k+6]+strMults[k+7]+strMults[k+8];
+     for(var l=0;l<9;l++){
+     splitMults.push(concatenation[l])
+     }
+ }
+ //join the split digits into 9 digit pandigitals
+ let joinMults=[];
+ let concatenation2="";
+ for(var m=0;m<splitMults.length;m+=9){
+     concatenation2=splitMults[m]+splitMults[m+1]+splitMults[m+2]+splitMults[m+3]+splitMults[m+4]+splitMults[m+5]+splitMults[m+6]+splitMults[m+7]+splitMults[m+8];
+     joinMults.push(concatenation2)
+ }
+ //test if each 9-digit pandigital has 1-9 that only occur once
+ let pandigitals=[];
+ for(var r=0;r<joinMults.length;r++){
+   if(/1/.test(joinMults[r])==true && /1/.test(joinMults[r])==true && /2/.test(joinMults[r])==true && /3/.test(joinMults[r])==true && /4/.test(joinMults[r])==true && /5/.test(joinMults[r])==true && /6/.test(joinMults[r])==true && /7/.test(joinMults[r])==true && /8/.test(joinMults[r])==true && /9/.test(joinMults[r])==true){
+
+     //turn the pandigitals into numbers
+     pandigitals.push(parseInt(joinMults[r],10));
+   }
+ }
+ //return the last pandigital in the array, which is the largest because the pandigital are already sorted
+return pandigitals[pandigitals.length-1];
+}
+console.log(pandigitalMultiples());
