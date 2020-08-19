@@ -9,29 +9,22 @@ The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, and 5
 
 What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1, 2, ... , n) where n > 1?
 */
+/*i must have fewer than five digits. Any number above 9500 will create a 9-digit pandigital that has repeating 9's. 
+Also I made 9487 the upper limit because 9488 has two 8's and any number between 9489-9499 has two 9's. 
+I made 5000 the lower limit because its a safe bet that there's numbers above 5000 that can create the pandigitals according to the rules.*/
 function pandigitalMultiples() {
-  let multiples=[];
-  //list numbers from 5000 to 9487
-  for(var i=5000;i<=9487;i++){
-    //multiply each number by 1 & 2
-    for(var j=1;j<=2;j++){
-      multiples.push(i*j);
-    }
-  }
-  //turn each element in the multiples array into a string and concatenate them 
-  var strMults=[];
-  for(var s=0;s<multiples.length;s+=2){
-    strMults.push(JSON.stringify(multiples[s]).concat(JSON.stringify(multiples[s+1])));
-    }
-//test whether the largest pandigitals have the digits 1-9 occuring only once
- let pandigitals;
- for(var p=strMults.length;p>0;p--){
-   if(/(?=.*1)(?=.*2)(?=.*3)(?=.*4)(?=.*5)(?=.*6)(?=.*7)(?=.*8)(?=.*9)/.test(strMults[p])==true){
+  let pandigital;
+  for (let i = 9487; i>5000; i--) {
+    // Build pandigital candidate
+    pandigital = i.toString() + (2*i).toString();
      //turn the largest pandigital into a number
-     pandigitals=parseInt(strMults[p],10);
+     if(/(?=.*1)(?=.*2)(?=.*3)(?=.*4)(?=.*5)(?=.*6)(?=.*7)(?=.*8)(?=.*9)/.test(pandigital)==true){
+     //turn the largest pandigital into a number
      break;
+     
    }
  }
-return pandigitals;
+
+return parseInt(pandigital,10);
 }
 console.log(pandigitalMultiples());
