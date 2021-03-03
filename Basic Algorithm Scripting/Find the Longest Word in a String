@@ -4,14 +4,14 @@ Your response should be a number.
 */
 
 function findLongestWordLength(str) {
-  let words=str.split(" ");
-  let arr=[];
+  var words=str.split(" ")
+  var longest=[]
   for(var i=0;i<words.length;i++){
-    let large=words[i].length;
-    arr.push(large);
-    
+    longest.push(words[i].length)
   }
-  return Math.max(...arr);
+    
+  var num=longest.sort((a,b)=>a-b)[longest.length-1]
+  return num;
 }
 
-console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"));
+findLongestWordLength("What if we try a super-long word such as otorhinolaryngology");
