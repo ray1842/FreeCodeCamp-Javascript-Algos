@@ -4,20 +4,7 @@ Return the truncated string with a ... ending.
 */
 
 function truncateString(str, num) {
-  var len=str.length;
-  var arr=[];
-  if(len>num){
-    for(var i=0;i<num;i++){
-      arr.push(str[i]);
-      var k=arr.join();
-      var l=k.replace(/,/g,"");
-    }
-    
-    return l+"...";
-    
-  }else{
-    return str;
+  return (str.length>num)?str.split("").splice(0,num).join("")+"...":str
   }
-}
 
-console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
+truncateString("A-tisket a-tasket A green and yellow basket", 8);
