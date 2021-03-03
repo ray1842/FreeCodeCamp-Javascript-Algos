@@ -4,13 +4,7 @@ Boolean primitives are true and false.
 */
 
 function booWho(bool) {
-  let check=typeof(bool);
-  if(check==="boolean"){
-    return true;
-  }else{
-    return false;
-  }
-  return check;
+  return bool===true || bool===false ?true:false;
 }
 
-console.log(booWho(1));
+booWho(true);
