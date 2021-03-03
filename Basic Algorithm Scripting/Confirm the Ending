@@ -7,10 +7,8 @@ But for the purpose of this challenge, we would like you to use one of the JavaS
 */
 
 function confirmEnding(str, target) {
-  let s=str;
-  let t=target;
-  let regex = new RegExp(target+"$","i")
-  return regex.test(s);
+  var ending= new RegExp(target+"$","i")
+  return ending.test(str);
 }
 
-console.log(confirmEnding("Bastian", "n"));
+confirmEnding("Bastian", "n");
