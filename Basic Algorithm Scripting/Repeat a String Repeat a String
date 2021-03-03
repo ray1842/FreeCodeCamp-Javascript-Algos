@@ -3,17 +3,11 @@
 Return an empty string if num is not a positive number.
 */
 function repeatStringNumTimes(str, num) {
-  let arr=[];
-    if(num>0){
-    for(var i=0;i<num;i++){
-      arr.push(str);
-      var list=arr.join("");
-      
-    }
-    return list;
-    }else{
-      return "";
-    }
+  var repeat=""
+  for(var i=0;i<num;i++){
+    repeat=repeat+str
+  }
+  return repeat;
 }
 
-console.log(repeatStringNumTimes("abc", 3));
+repeatStringNumTimes("*", 3);
