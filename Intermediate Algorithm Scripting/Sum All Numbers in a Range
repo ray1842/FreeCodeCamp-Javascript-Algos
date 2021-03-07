@@ -3,19 +3,12 @@ Return the sum of those two numbers plus the sum of all the numbers between them
 The lowest number will not always come first.*/
 
 function sumAll(arr) {
-  var arr2=arr;
-  var arr3=arr2.sort(function(a,b){
-    return a-b;
-  });
-  var arr4=[];
-  for(var i=arr[0];i<=arr3[arr3.length-1];i++){
-    arr4.push(i);
-  }
-  var sum=0;
-  for(var j=0;j<arr4.length;j++){
-    sum=sum+arr4[j];
+  arr=arr.sort((a,b)=>a-b)
+  var sum=0
+  for (var i=arr[0];i<arr[1]+1;i++){
+    sum+=i
   }
   return sum;
 }
 
-console.log(sumAll([4,1]));
+console.log(sumAll([1, 4]));
