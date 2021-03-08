@@ -12,19 +12,14 @@ For example if you mean to replace the word "Book" with the word "dog", it shoul
 */
 
 function myReplace(str, before, after) {
-  let f=str.split(/\s/g);
-  let a="";
-
-  /[A-Z]/.test(before[0])==true ? 
-    a=after[0].toUpperCase()+after.substr(1) : a=after;
-
-  let endWord=f[f.length-1];
-  let index=f.indexOf(before);
-  const filterfun = () => RegExp(before,"g").test(str)==true ? f.splice(index,1,a):f;
-  f.filter(filterfun)
-  endWord==before ? f : f.splice(f.length-1,1,endWord)
-  
- return f.join(" ");
-  
+  var capitalized=new RegExp(/^[A-Z]/)
+  if(capitalized.test(before)===true){
+    after=after[0].toUpperCase()+[...after].splice(1,).join("")
+  }
+  else{
+    after=after[0].toLowerCase()+[...after].splice(1,).join("")
+  }
+  return str.replace(before,after);
 }
-console.log(myReplace("Let us go to the store", "store", "mall"));
+
+myReplace("Let us go to the store", "store", "mall");
