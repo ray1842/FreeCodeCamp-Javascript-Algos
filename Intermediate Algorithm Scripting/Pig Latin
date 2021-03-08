@@ -7,31 +7,28 @@
 Translate the provided string to Pig Latin. Input strings are guaranteed to be English words in all lowercase.
 */
 
-function translatePigLatin(str) {
-  let vowel=new RegExp(/^[aeiou]/i).test(str)
-  let consonant=new RegExp(/[^aeiou]/i);
-  let arr0=[...str]
-  if(vowel==true){
-    arr0.push("w","a","y");
-  }else{
-  var i = 0;
-    while (i<arr0.length) {
-    if (consonant.test(arr0[i])==true){
-      arr0.splice(i,1); 
-    }else{
-      break;
-    }
-}
-  var diff=str.length-arr0.length;
-  for(i;i<diff;i++){
-    arr0.push(str[i]);
+function translatePigLatin(str) {  
+  var regex=new RegExp(/[aeiou]/,"i")
+  var word=[...str]
+  var piglatin
+  if(regex.test(word[0])==false){
+    for(var i=0;i<str.length;i++){
+      if(regex.test(word[i])==false){
+        word.push(word[i]) 
+      }
+      else{
+        break
+      }
   }
-  if(vowel==false){
-    arr0.push("a","y");
+  var diff=word.length-str.length 
+  piglatin=word.splice(diff,).concat(["a","y"]).join("")
+  }
+  else{
+    piglatin=word.concat(["w","a","y"]).join("")
+  }
   
-  }}
-  return arr0.join("");
+  console.log(piglatin)
+  return piglatin;
 }
 
-
-console.log(translatePigLatin("california"));
+console.log(translatePigLatin("eight"));
